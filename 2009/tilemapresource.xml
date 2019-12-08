@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <TileMap version="1.0.0" tilemapservice="http://tms.osgeo.org/1.0.0">
+      <Title>AreaA2009_finished.tif</Title>
+      <Abstract></Abstract>
+      <SRS>EPSG:3857</SRS>
+      <BoundingBox minx="12.71878513787219" miny="41.88739543857559" maxx="12.72018352639454" maxy="41.88839130489936"/>
+      <Origin x="12.71878513787219" y="41.88739543857559"/>
+      <TileFormat width="256" height="256" mime-type="image/png" extension="png"/>
+      <TileSets profile="mercator">
+        <TileSet href="17" units-per-pixel="1.19432856674194" order="17"/>
+        <TileSet href="18" units-per-pixel="0.59716428337097" order="18"/>
+        <TileSet href="19" units-per-pixel="0.29858214168549" order="19"/>
+        <TileSet href="20" units-per-pixel="0.14929107084274" order="20"/>
+        <TileSet href="21" units-per-pixel="0.07464553542137" order="21"/>
+      </TileSets>
+    </TileMap>
+    
