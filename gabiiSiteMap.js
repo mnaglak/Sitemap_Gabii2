@@ -40,6 +40,9 @@
 		map.createPane('2019');
 		map.getPane('2019').style.zIndex=202;
 		
+		map.createPane('areas');
+		map.getPane('areas').style.zIndex=405;
+		
 //Examples of an externally called tiled basemap
 		var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
 			attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
@@ -90,7 +93,7 @@
 					out.push("Notes: " +f.properties.notes);
 					out.push('<a href="'+ webAddress + f.properties.SU + '" target="_blank">Link to Database</a>'); } //allows for link to external URL via attribute in .geoJson table
 					l.bindPopup(out.join("<br />"));
-				}
+				};
 			
 			/* generalized function popup box for any .geojson
 					function popUp(f,l){
@@ -108,44 +111,32 @@
 				}
 			*/	
 			
-//Random Style definitions for individual .geoJson layers
-		var myStyle0a = {
-				"color": "#ff1500",
-				"weight": 2,
-				"opacity": 0.5};
-		var myStyle0b = {
-				"color": "#7a7676", //grey
-				"weight": 2,
-				"opacity": 0.5};
-		var myStyle1 = {
-				"color": "#f2f55d", //yellow
-				"weight": 2,
-				"opacity": 0.5};
-		var myStyle2 = {
-				"color": "#ff00fa",
-				"weight": 2,
-				"opacity": 0.5};
-		var myStyle3 = {
-				"color": "#ff7b00",
-				"weight": 2,
-				"opacity": 0.5};
-		var myStyle4a = {
-				"color": "#ff00d4",
-				"weight": 2,
-				"opacity": 0.5};
-		var myStyle4b = {
-				"color": "#ccff00",
-				"weight": 2,
-				"opacity": 0.5};
-		var myStyle4c = {
-				"color": "#00ffe9",
-				"weight": 2,
-				"opacity": 0.5}; 
 				
 //Import of locally hosted geoJSON files with popUp box showing attributes and designated line style, uses AJAX plug in 
 		var wholeSite = new L.GeoJSON.AJAX("polyShift_final.geojson", 
 			{style: swapStyle,
 			onEachFeature:popUp}).addTo(map);     
+
+
+
+	wholeSite.on('click', function (e) {
+			e.layer.setStyle({fillColor: '#ff0000', color: '#ff0000'});
+	
+		});
+
+	
+		wholeSite.on('popupclose', function(e){
+			wholeSite.setStyle(swapStyle);
+		});
+		
+		
+		
+	/*	var areas = new L.GeoJSON.AJAX("AreaShapesLeaflet.geojson", 
+		{ fill: false, pane: 'areas'}).addTo(map);
+		
+		areas.bindTooltip( function (layer) {
+			return layer.feature.properties.Area_Name; 
+		}, {interactive: true}).addTo(map); */
 
 		function swapStyle(feature) {
 				switch (feature.properties.DESCRIPTIO) {
@@ -169,7 +160,7 @@
 					case 'RD': return {color: "#000000", fillColor: "#964b00", weight: 1}; //brown
 					case 'WM': return {color: "#000000", fillColor: "#0000ff", weight: 1}; //blue
 					case 'CS': return {color: "#000000", fillColor: "#0000ff", weight: 1}; //blue
-					case 'TOP': return {color: "#000000", dashArray: '2,5', weight: 1};
+					case 'TOP': return {color: "#000000",fill: false, dashArray: '2,5', weight: 2};
 					case 'OT': return {color: "#000000", weight: 1};
 					case 'INT': return {color: "#000000", fillColor: "#171a1c", weight: 1}; //dark grey
 					case 'AR': return {color: "#000000", fillColor: "#171a1c", weight: 1}; //dark grey
@@ -186,20 +177,20 @@
 			
 		var overlayMaps = {
 			"Stratigraphic Units" : wholeSite,
-			"2009" : airPhoto2009,
-			"2010" : airPhoto2010,
-			"2011" : airPhoto2011,
-			"2012" : airPhoto2012,
-			"2014" : airPhoto2014,
-			"2015" : airPhoto2015,
-			"2016" : airPhoto2016,
-			"2017" : airPhoto2017,
-			"2018" : airPhoto2018,
-			"2019" : airPhoto2019
+			"2009 Aerial Imagery" : airPhoto2009,
+			"2010 Aerial Imagery" : airPhoto2010,
+			"2011 Aerial Imagery" : airPhoto2011,
+			"2012 Aerial Imagery" : airPhoto2012,
+			"2014 Aerial Imagery" : airPhoto2014,
+			"2015 Aerial Imagery" : airPhoto2015,
+			"2016 Aerial Imagery" : airPhoto2016,
+			"2017 Aerial Imagery" : airPhoto2017,
+			"2018 Aerial Imagery" : airPhoto2018,
+			"2019 Aerial Imagery" : airPhoto2019
 			};
 			L.control.layers(baseLayers, overlayMaps).addTo(map);
 		
-				
+			
 //Creation of pan/scale function like Fulcrum images have. Uses PanControl plugin  
 		L.control.pan().addTo(map);
 		L.control.scale().addTo(map);
