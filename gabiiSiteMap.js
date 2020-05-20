@@ -136,20 +136,38 @@
 					else if (f.properties.SU == 622) {
 					layerType = "Quarry"; }
 					
+					var areaLetter = "";
+					if (f.properties.SU < 1000) {
+					areaLetter= "A";}
+					else if (f.properties.SU < 2000) {
+					areaLetter= "B";}
+					else if (f.properties.SU < 3000) {
+					areaLetter= "C";}
+					else if (f.properties.SU < 4000) {
+					areaLetter= "D";}
+					else if (f.properties.SU < 5000) {
+					areaLetter= "E";}
+					else if (f.properties.SU < 6000) {
+					areaLetter= "F";}
+					else if (f.properties.SU < 7000) {
+					areaLetter= "G";}
+					else if (f.properties.SU < 8000) {
+					areaLetter= "H";}
+					else if (f.properties.SU < 9000) {
+					areaLetter= "I";}
+					else if (f.properties.SU < 10000) {
+					areaLetter= "J";}
 					
-					
-					
-					
-					
-					
-					
+					out.push("Area: " + areaLetter);
 					out.push("SU: " +f.properties.SU);
 					out.push("Type: " + layerType);
 					out.push("Total Area (m): " + f.properties.SHAPE_Area);
 					out.push("Total Perimeter (m): " +f.properties.SHAPE_Leng);
 					out.push("Tomb Number (if available): " +f.properties.tomb_ID);
 					out.push("Notes: " +f.properties.notes);
-					out.push('<a href="'+ webAddress + f.properties.SU + '" target="_blank">Link to Database</a>'); } //allows for link to external URL via attribute in .geoJson table
+					out.push('<a href="'+ webAddress + f.properties.SU + '" target="_blank">Link to Database</a>'); 
+					} //allows for link to external URL via attribute in .geoJson table
+					
 					l.bindPopup(out.join("<br />"));
 				};
 			
@@ -187,14 +205,19 @@
 			wholeSite.setStyle(swapStyle);
 		});
 		
+		var areaStyle = {
+			color: "#000000",
+			 
+			 
+			weight: 1};
 		
 		
-	/*	var areas = new L.GeoJSON.AJAX("AreaShapesLeaflet.geojson", 
-		{ fill: false, pane: 'areas'}).addTo(map);
+		var areas = new L.GeoJSON.AJAX("AreaShapesLeaflet.geojson", 
+		{ fill: false, pane: 'areas', style: areaStyle}).addTo(map);
 		
 		areas.bindTooltip( function (layer) {
 			return layer.feature.properties.Area_Name; 
-		}, {interactive: true}).addTo(map); */
+		}, {interactive: true}).addTo(map); 
 
 		function swapStyle(feature) {
 				switch (feature.properties.DESCRIPTIO) {
