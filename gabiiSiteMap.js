@@ -189,7 +189,7 @@
 			
 				
 //Import of locally hosted geoJSON files with popUp box showing attributes and designated line style, uses AJAX plug in 
-		var wholeSite = new L.GeoJSON.AJAX("polyShift_final.geojson", 
+		var wholeSite = new L.GeoJSON.AJAX("gabiiSiteMap.geojson", 
 			{style: swapStyle,
 			onEachFeature:popUp}).addTo(map);     
 
