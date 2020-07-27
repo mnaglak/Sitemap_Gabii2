@@ -165,7 +165,6 @@
 					out.push("Total Perimeter (m): " +f.properties.SHAPE_Leng);
 					out.push("Tomb Number (if available): " +f.properties.tomb_ID);
 					out.push("Notes: " +f.properties.notes);
-					out.push('<a href="'+ webAddress + f.properties.SU + '" target="_blank">Link to Database</a>'); 
 					} //allows for link to external URL via attribute in .geoJson table
 					
 					l.bindPopup(out.join("<br />"));
