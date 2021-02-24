@@ -80,7 +80,7 @@
 			});
 		
 		
-		var webAddress = "https://gabii.cast.uark.edu/data/browse/stratigraphic_units/"
+		var webAddress = "https://doi.org/10.3998/gabii.1.";
 //Specialized Function to allow for popup box containing attributes of Gabii .geojson
 			function popUp(f,l){
 				var out = [];
@@ -165,6 +165,7 @@
 					out.push("Total Perimeter (m): " +f.properties.SHAPE_Leng);
 					out.push("Tomb Number (if available): " +f.properties.tomb_ID);
 					out.push("Notes: " +f.properties.notes);
+					out.push('<a href="'+ webAddress + f.properties.SU + '" target="_blank">Link to Database</a>'); } //allows for link to external URL via attribute in .geoJson table
 					} //allows for link to external URL via attribute in .geoJson table
 					
 					l.bindPopup(out.join("<br />"));
